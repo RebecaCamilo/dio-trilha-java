@@ -1,11 +1,34 @@
 package processo_seletivo.candidatura;
 
+import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
+
 public class ProcessoSeletivo {
     public static void main(String[] args) {
-        System.out.println("Processo seletivo");
-        analisarCandidato(1900.0);
-        analisarCandidato(2000.0);
-        analisarCandidato(2100.0);
+        selecaoCandidatos();
+    }
+
+    static void selecaoCandidatos() {
+        String [] candidatos = {"FELIPE", "MARCIA", "JULIA", "PAULO", "AUGUSTO", "MONICA", "FABRICIO", "MIRELA", "DANIELA", "JONAS"};
+
+        ArrayList<String> candidatosSelecionados = new ArrayList<>();
+
+        double salarioBase = 3000.0;
+
+        for (String candidato : candidatos) {
+            double salarioPretendido = valorPretendido();
+
+            // System.out.println("O candidato " + candidato + " solicitou " + salarioPretendido);
+            if (salarioPretendido <= salarioBase) {
+                // System.out.println("O candidato " + candidato + " foi selecionado para a vaga");
+                candidatosSelecionados.add(candidato);
+            }
+        }
+        System.out.println(candidatosSelecionados);
+    }
+
+    static double valorPretendido() {
+        return ThreadLocalRandom.current().nextDouble(2800, 3500);
     }
 
     static void analisarCandidato(double salarioPretendido) {
